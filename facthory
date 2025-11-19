@@ -1,0 +1,54 @@
+# Producto
+class PaqueteViaje:
+    def describir(self):
+        pass
+
+
+# Productos concretos
+class PaqueteEconomico(PaqueteViaje):
+    def describir(self):
+        return "Paquete Económico: hotel básico, transporte terrestre, 1 tour."
+
+
+class PaqueteStandard(PaqueteViaje):
+    def describir(self):
+        return "Paquete Standard: hotel 3 estrellas, vuelos nacionales, 2 tours."
+
+
+class PaquetePremium(PaqueteViaje):
+    def describir(self):
+        return "Paquete Premium: hotel 5 estrellas, vuelos internacionales, tours ilimitados."
+
+
+# Creador
+class AgenciaDeViajes:
+    def crear_paquete(self):
+        pass
+
+    def reservar(self):
+        paquete = self.crear_paquete()
+        return f"Reserva realizada: {paquete.describir()}"
+
+
+# Creadores concretos
+class AgenciaEconomica(AgenciaDeViajes):
+    def crear_paquete(self):
+        return PaqueteEconomico()
+
+
+class AgenciaStandard(AgenciaDeViajes):
+    def crear_paquete(self):
+        return PaqueteStandard()
+
+
+class AgenciaPremium(AgenciaDeViajes):
+    def crear_paquete(self):
+        return PaquetePremium()
+
+
+# Uso
+ag1 = AgenciaEconomica()
+ag2 = AgenciaPremium()
+
+print(ag1.reservar())
+print(ag2.reservar())

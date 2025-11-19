@@ -1,0 +1,38 @@
+class Subject:
+    def __init__(self):
+        self.observers = []
+
+    def attach(self, observer):
+        self.observers.append(observer)
+
+    def detach(self, observer):
+        self.observers.remove(observer)
+
+    def notify(self, message):
+        for observer in self.observers:
+            observer.update(message)
+
+
+class Observer:
+    def update(self, message):
+        pass
+
+
+class ConcreteObserver(Observer):
+    def __init__(self, name):
+        self.name = name
+
+    def update(self, message):
+        print(f"{self.name} recibió: {message}")
+
+
+# Uso
+subject = Subject()
+
+obs1 = ConcreteObserver("cristian cuastumal")
+obs2 = ConcreteObserver("julian mejia")
+
+subject.attach(obs1)
+subject.attach(obs2)
+
+subject.notify("Nuevo mensaje del sistema")
